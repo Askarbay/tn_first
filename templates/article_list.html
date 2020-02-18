@@ -1,0 +1,251 @@
+{% include "blocks/header.html" %}
+
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-top alice-bg padding-top-30 padding-bottom-10">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="breadcrumb-area">
+              <h1>Поиск лотов</h1>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Поиск лотов</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="breadcrumb-form">
+              <form action="{% url 'post_list' %}">
+                <input type="search" placeholder="Поиск по названию" aria-label="Search" name='q'>
+                <button type="submit"><i data-feather="search"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+
+
+    <!-- tender Listing -->
+    <div class="alice-bg section-padding-bottom">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col">
+            <div class="tender-listing-container">
+              <div class="filtered-tender-listing-wrapper">
+
+                <a href="javascript:void(0);" id="dop-filter-mobile-link" style="display: none;padding: 10px;width: 100%;text-align: center;color: #fff;background: #eb3547;margin-bottom: 20px;"><i class="fa far fa-chevron-circle-down"></i>&nbsp;Показать фильтр</a>
+                <a href="javascript:void(0);" id="dop-filter-mobile-link-hide" style="display: none;padding: 10px;width: 100%;text-align: center;color: #fff;background: #eb3547;margin-bottom: 20px;"><i class="fa far fa-chevron-circle-up"></i>&nbsp;Скрыть фильтр</a>
+
+                <script>
+                  jQuery(document).ready(function($){
+
+                    if ($(window).width() < 767) {
+
+                       $('#dop-filter-mobile-link').show();
+                       $('#dop-filter-mobile-link').click(function(){
+                        
+                          $('.dop-filter-mobile').slideToggle();
+                          $('#dop-filter-mobile-link').hide();
+                          $('#dop-filter-mobile-link-hide').show();
+                          $('#dop-filter-mobile-link-hide2').show();
+
+                       });
+
+                       $('#dop-filter-mobile-link-hide').click(function(){
+                        
+                          $('.dop-filter-mobile').slideToggle();
+                          $('#dop-filter-mobile-link-hide').hide();
+                          $('#dop-filter-mobile-link-hide2').hide();
+                          $('#dop-filter-mobile-link').show();
+
+                       });
+
+                       $('#dop-filter-mobile-link-hide2').click(function(){
+                        
+                          $('.dop-filter-mobile').slideToggle();
+                          $('#dop-filter-mobile-link-hide').hide();
+                          $('#dop-filter-mobile-link-hide2').hide();
+                          $('#dop-filter-mobile-link').show();
+
+                       });
+
+                    };
+                    
+                  });
+                </script>
+
+                <div class="dop-filter-mobile" style="display: none;">
+
+                  <div class="searchAndFilter-wrapper">
+                      <div class="searchAndFilter-block">
+                        <div class="searchAndFilter">
+
+                          <form method="get" class="search-form">
+
+                            {{ myFilter }}
+
+
+
+
+                            <div class="form-group">
+                              <button type="submit"  class="button width-100 text-center">НАЙТИa</button>
+                              <a href="javascript:void(0);" id="dop-filter-mobile-link-hide2" style="display: none;padding: 10px;width: 100%;text-align: center;color: #fff;background: #1b1b1b;margin-top: 20px;"><i class="fa far fa-chevron-circle-up"></i>&nbsp;Скрыть фильтр</a>
+                            </div>
+
+                            <div style="text-align: center;">
+                              <a href="javascript:void(0);">Сохранить поиск <i class="far fa-star"></i></a>
+                            </div>
+
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+
+                
+
+                <div class="tender-view-controller-wrapper">
+                  <div class="tender-view-controller">
+                    <div class="tender-view-filter">
+                      <div class="form-group">
+                        <select class="form-control" id="sel1">
+                          <option selected>Сортировать по</option>
+                          <option>Дата публикации</option>
+                          <option>Дата окончания</option>
+                          <option>По алфавиту</option>
+                          <option>По сумме</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="showing-number">
+                    <span>Показано 1–10 из 1029</span>
+                    <a href="javascript:void(0);" class="download-excel"><i class="fas fa-download"></i>&nbsp;Выгрузить в Excel</a>
+                  </div>
+                </div>
+
+                <div class="tender-filter-result xs-padding-0">
+
+
+                		{% for article in posts %}
+
+
+                    <div class="item">
+                      <div class="tender-list half-grid">
+                        <div class="body">
+                          <div class="content">
+                            <h4><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h4>
+                            <div class="info">
+                              <div class="row">
+                                <div class="col-md-5">
+                                  Начало: 01.01.2020<br>
+                                  Окончание: 01.01.2020
+                                </div>
+                                <div class="col-md-7">
+                                  <span class="deadline">До завершения: 6 д 23 ч 45 м</span>
+                                  <span class="office-location"><i data-feather="map-pin"></i>Регион: <b>{{ article.city }}</b></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="more">
+                            <span class="price"><b>Сумма:</b><br>2 000 000 тг</span><br>
+                            <div class="buttons">
+                              <a href="{{ article.get_absolute_url }}" class="button">ПОДРОБНЕЕ</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% empty %}
+
+
+                  <div class="item">
+                    <p>Не найден соответсвующий тендер</p>
+                  </div>
+                    	{% endfor %}
+
+
+                    
+
+
+                </div>
+
+
+
+                <div class="pagination-list text-center">
+                  <nav class="navigation pagination">
+                    <div class="nav-links">
+                      {% if posts.has_previous %}
+                      <a class="prev page-numbers" href="?page={{ posts.previous_page_number }}"><i class="fas fa-angle-left"></i></a>
+                      {% endif %}
+
+                      {% for p in posts.paginator.page_range %}
+                      {% if posts.number == p %}
+                      <a aria-current="page" href="?page={{ p }}" class="page-numbers current">{{ p }}</a>
+                      {% else %}
+                      <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+
+                      {% endif %}
+                      {% endfor %}
+
+
+                      {% if posts.has_next %}
+                      <a class="next page-numbers" href="?page={{ posts.next_page_number }}"><i class="fas fa-angle-right"></i></a>
+                      {% endif %}
+
+                    </div>
+                  </nav>                
+                </div>
+
+              </div>
+
+              <div class="tender-filter-wrapper pc-dop-filter">
+
+                <div data-id="tender-type" class="tender-filter tender-type same-pad">
+
+                  <div class="form-group">
+                  <form method="GET" >
+
+                    {{ myFilter.form }}
+
+                    <button type="submit" class="button width-100 text-center">НАЙТИ</button>
+
+
+
+                  </form>
+                  </div>
+
+
+
+
+
+
+                  <div style="text-align: center;">
+                    <a href="javascript:void(0);">Сохранить в избранные <i class="far fa-star"></i></a>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- tender Listing End -->
+
+
+
+{% include "blocks/lidmagnit.html" %}
+{% include "blocks/footer.html" %}

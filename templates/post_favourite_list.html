@@ -1,0 +1,85 @@
+{% include "blocks/header.html" %}
+{% block content %}
+
+
+         <!-- Breadcrumb -->
+    <div class="breadcrumb-top alice-bg padding-top-40 padding-bottom-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="breadcrumb-area">
+              <h1>Избранные лоты</h1>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Избранные лоты</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="alice-bg section-padding-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="tender-details">
+
+
+
+{% for p in favourite_posts %}
+
+                         <div class="item">
+                      <div class="tender-list half-grid">
+                        <div class="body">
+                          <div class="content">
+                            <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
+                            <div class="info">
+                              <div class="row">
+                                <div class="col-md-5">
+                                  Начало: 01.01.2020<br>
+                                  Окончание: 01.01.2020
+                                </div>
+                                <div class="col-md-7">
+                                  <span class="deadline">До завершения: 6 д 23 ч 45 м</span>
+                                  <span class="office-location"><i data-feather="map-pin"></i>Регион: <b>Алматы</b></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="more">
+                            <span class="price"><b>Сумма:</b><br>2 000 000 тг</span><br>
+                            <div class="buttons">
+                              <a href="{{ article.get_absolute_url }}" class="button">ПОДРОБНЕЕ</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+{% empty %}
+
+  <ul>
+    <li>Нет поста</li>
+  </ul>
+
+{% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% include "blocks/footer.html" %}

@@ -1,0 +1,36 @@
+{% include "blocks/header.html" %}
+
+{% block content %}
+
+  <div class="padding-top-90 padding-bottom-90 access-page-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-md-6">
+            <div class="access-form">
+              <div class="form-header">
+                <h5><i data-feather="edit"></i>Войти в аккаунт TENDERNET.KZ</h5>
+              </div>
+
+
+
+              <form method="post">
+              	 	{% csrf_token %}
+              	 	{{ form.as_p }}
+    				<input type="submit" value="Login" class="btn btn-outline-success">
+                </form>
+
+
+
+
+                <div class="shortcut-login">
+                  <p>У Вас нет аккаунта? <a href="{% url 'register' %}" style="color: red;">Зарегистрируйтесь</a></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% include "blocks/footer.html" %}
