@@ -2,6 +2,7 @@
   <dictionary name="Game-PK">
     <words>
       <w>klient</w>
+      <w>postgresql</w>
     </words>
   </dictionary>
 </component>
