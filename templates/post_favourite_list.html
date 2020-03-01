@@ -40,20 +40,19 @@
                             <div class="info">
                               <div class="row">
                                 <div class="col-md-5">
-                                  Начало: 01.01.2020<br>
-                                  Окончание: 01.01.2020
+                                  Начало: {{ p.date }}
                                 </div>
                                 <div class="col-md-7">
-                                  <span class="deadline">До завершения: 6 д 23 ч 45 м</span>
-                                  <span class="office-location"><i data-feather="map-pin"></i>Регион: <b>Алматы</b></span>
+
+                                  <span class="office-location"><i data-feather="map-pin"></i>Регион: <b>{{ p.city }}</b></span>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div class="more">
-                            <span class="price"><b>Сумма:</b><br>2 000 000 тг</span><br>
+                            <span class="price"><b>Сумма:</b><br>{{ p.price }}тг</span><br>
                             <div class="buttons">
-                              <a href="{{ article.get_absolute_url }}" class="button">ПОДРОБНЕЕ</a>
+                              <a href="{{ p.get_absolute_url }}" class="button">ПОДРОБНЕЕ</a>
                             </div>
                           </div>
                         </div>

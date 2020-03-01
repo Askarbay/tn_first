@@ -32,6 +32,7 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('profile/', views.profile, name="profile"),
+    path('edit_tarif/', views.edit_tarif, name="edit_tarif"),
 
 
 

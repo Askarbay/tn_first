@@ -80,3 +80,18 @@ def edit_profile(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+def edit_tarif(request):
+    if request.method == 'POST':
+        tarif_form = TarifEditForm(data=request.POST or None, instance=request.user.profile)
+        if tarif_form.is_valid():
+            tarif_form.save()
+
+    else:
+        tarif_form = TarifEditForm(instance=request.user.profile)
+
+    context = {
+        'tarif_form': tarif_form,
+    }
+    return render(request, 'edit_tarif.html', context)

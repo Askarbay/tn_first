@@ -83,7 +83,8 @@
 
                       <div class="tender-summary">
                         <div class="buttons">
-
+                              {% if request.user.is_authenticated %}
+                                  {% if user.profile.tarif.id > 1 %}
 
                                   <form id="form_buying_product" class="form-inline" action="{% url 'basket_adding' %}">
                                     {% csrf_token %}
@@ -100,7 +101,15 @@
                                       </button>
                                   </div>
                                   </form>
+                                  {% else %}
+                                  <a href="{% url 'profile' %}"><button class="button contact-button">Участвовать</button></a>
 
+                                  {% endif %}
+
+                            {% else %}
+                          <a href="{% url 'user_login' %}"><button class="button contact-button">Участвовать</button></a>
+
+                            {% endif %}
 
 
 
@@ -108,11 +117,17 @@
                           <!---<a href="javascript:void(0);" class="button contact-button" data-toggle="modal" data-target="#uchastvovat" style="display: block;width: 100%;text-align: center;margin-bottom: 10px;">Участвовать</a>-->
                           <a href="{{ post.down.url }}" target="_blank" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Скачать документацию</a>
 
-                          {% if is_favourite %}
-                          <a href="{% url 'favourite_post' slug=post.slug %}" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Добавлено в избранное </a>
-                          {% else %}
-                          <a href="{% url 'favourite_post' slug=post.slug %}" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Добавить в избранное </a>
+                          {% if request.user.is_authenticated %}
 
+                            {% if is_favourite %}
+                            <a href="{% url 'favourite_post' slug=post.slug %}" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Добавлено в избранное </a>
+                            {% else %}
+                            <a href="{% url 'favourite_post' slug=post.slug %}" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Добавить в избранное </a>
+
+
+                            {% endif %}
+                          {% else %}
+                              <a href="{% url 'user_login' %}" class="save" style="display: block;width: 100%;text-align: center;margin-right: 0;margin-bottom: 10px;"><i class="fa fa-download"></i>&nbsp;Добавить в избранное</a>
 
                           {% endif %}
 
@@ -122,6 +137,9 @@
                       <div class="tender-summary" style="margin-top: 20px;">
                         <div class="buttons">
                           <h6 style="text-align: center; margin-bottom: 10px;">Необходимые трудовые, материальные ресурсы для участия</h6>
+
+                          {% if request.user.is_authenticated %}
+                              {% if user.profile.tarif.id > 1 %}
 
                                   <form id="buying_doc" class="form-inline" action="{% url 'basket_adding_doc' %}">
                                     {% csrf_token %}
@@ -139,7 +157,15 @@
                                   </div>
                                   </form>
 
+                                  {% else %}
+                                  <a href="{% url 'profile' %}"><button class="button contact-button">Участвовать</button></a>
 
+                                  {% endif %}
+
+                            {% else %}
+                            <a href="{% url 'user_login' %}"><button class="button contact-button">Участвовать</button></a>
+
+                            {% endif %}
 
 
 
