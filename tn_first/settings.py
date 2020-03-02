@@ -135,8 +135,3 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static")
 
-#uncomment
-try:
-    from .settings_prod1 import *
-except:
-    pass
